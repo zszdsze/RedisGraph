@@ -47,10 +47,10 @@ endif
 default: $(SO_NAME)
 
 %.o: tmp_source/%.c $(INC)
-	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $(notdir $@)
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) -pg $< -o $(notdir $@)
 
 $(SO_NAME): $(OBJ)
-	$(CC) $(SO_OPTS) $^ $(LIBS) -o $@ -lm
+	$(CC) $(SO_OPTS) $^ $(LIBS) -on -pg $@ -lm
 
 .KEEP: $(OBJ)
 

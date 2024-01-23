@@ -215,6 +215,14 @@ all: bindirs $(TARGET)
 
 include $(MK)/rules
 
+foo:
+	@echo $(MK)
+	@echo $(SHOW)
+	@echo $(MAKE)
+	@echo $(CC)
+	@echo $(CXX)
+	@echo $(LIBXXHASH)
+
 #----------------------------------------------------------------------------------------------
 
 ifeq ($(DEPS),1)

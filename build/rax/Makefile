@@ -62,7 +62,7 @@ include $(MK)/rules
 
 $(BINDIR)/%.o: $(SRCDIR)/%.c
 	@echo Compiling $<...
-	$(SHOW)$(CC) $(CC_FLAGS) -c $< -o $@
+	$(SHOW)$(CC) $(CC_FLAGS) -pg -c $< -o $@
 
 $(TARGET): $(OBJECTS)
 	@echo Creating $@...

@@ -93,20 +93,20 @@ else
 endif
 
 %.o: ../Source/%.c $(INC)
-	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $(notdir $@)
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) -pg $< -o $(notdir $@)
 
 %.o: ../Source/Generated1/%.c $(INC)
-	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $(notdir $@)
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) -pg $< -o $(notdir $@)
 
 %.o: ../Source/Generated2/%.c $(INC)
-	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $(notdir $@)
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) pg $< -o $(notdir $@)
 
 library: $(SO_NAME)
 	ln -sf $(SO_NAME) $(SO_NAME0)
 	ln -sf $(SO_NAME) $(SO_NAME1)
 
 $(SO_NAME): $(OBJ)
-	$(CC) $(SO_OPTS) $^ -o $@
+	$(CC) $(SO_OPTS) $^ -o -pg $@
 
 .KEEP: $(OBJ)
 
@@ -133,10 +133,10 @@ DOBJ = $(DSRC2:.c=.o)
 .KEEP: $(DOBJ)
 
 %.o: ../Demo/Source/%.c $(DINC)
-	$(CC) -c $(CFLAGS) $(DCPPFLAGS) $< -o $(notdir $@)
+	$(CC) -c $(CFLAGS) $(DCPPFLAGS) -pg $< -o $(notdir $@)
 
 %_demo: ../Demo/Program/%_demo.c $(SO_NAME) $(DINC) $(DOBJ)
-	$(CC) $(CFLAGS) $(LDFLAGS) $(DCPPFLAGS) $< $(DOBJ) $(DLIBS) -o $@
+	$(CC) $(CFLAGS) $(LDFLAGS) $(DCPPFLAGS) -pg $< $(DOBJ) $(DLIBS) -o $@
 
 DEMO_PRG = $(notdir $(wildcard ../Demo/Program/*_demo.c))
 DEMO = $(DEMO_PRG:.c=)
